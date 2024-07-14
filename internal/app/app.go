@@ -8,7 +8,7 @@ import (
 
 // App is the main application
 type App struct {
-	GRPCServer *grpc.GRPCServer
+	GRPCServer *grpc.Server
 }
 
 // New creates a new application

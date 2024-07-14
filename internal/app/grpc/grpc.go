@@ -10,8 +10,8 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-// GRPCServer is the gRPC server
-type GRPCServer struct {
+// Server is the gRPC server
+type Server struct {
 	log        *slog.Logger
 	gRPCServer *grpc.Server
 	port       int
@@ -21,14 +21,14 @@ type GRPCServer struct {
 func New(
 	log *slog.Logger,
 	port int,
-) *GRPCServer {
+) *Server {
 
 	s := grpc.NewServer()
 	reflection.Register(s)
 	server := NewChatServer(log)
 	desc.RegisterChatV1Server(s, server)
 
-	grpcServer := GRPCServer{
+	grpcServer := Server{
 		log:        log,
 		port:       port,
 		gRPCServer: s,
@@ -38,7 +38,7 @@ func New(
 }
 
 // Run starts the gRPC server
-func (s *GRPCServer) Run() error {
+func (s *Server) Run() error {
 	const op = "app.grpc.Run"
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", s.port))
 	if err != nil {
@@ -55,7 +55,7 @@ func (s *GRPCServer) Run() error {
 }
 
 // Stop stops the gRPC server
-func (s *GRPCServer) Stop() {
+func (s *Server) Stop() {
 	const op = "app.grpc.Stop"
 
 	s.log.With(slog.String("op", op)).
