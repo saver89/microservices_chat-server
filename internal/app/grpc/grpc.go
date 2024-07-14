@@ -10,12 +10,14 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
+// GRPCServer is the gRPC server
 type GRPCServer struct {
 	log        *slog.Logger
 	gRPCServer *grpc.Server
 	port       int
 }
 
+// New creates a new gRPC server
 func New(
 	log *slog.Logger,
 	port int,
@@ -35,6 +37,7 @@ func New(
 	return &grpcServer
 }
 
+// Run starts the gRPC server
 func (s *GRPCServer) Run() error {
 	const op = "app.grpc.Run"
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", s.port))
@@ -51,6 +54,7 @@ func (s *GRPCServer) Run() error {
 	return nil
 }
 
+// Stop stops the gRPC server
 func (s *GRPCServer) Stop() {
 	const op = "app.grpc.Stop"
 

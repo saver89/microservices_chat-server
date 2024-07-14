@@ -13,6 +13,7 @@ type chatServer struct {
 	desc.UnimplementedChatV1Server
 }
 
+// NewChatServer creates a new chat server
 func NewChatServer(log *slog.Logger) *chatServer {
 	return &chatServer{
 		log: log,
