@@ -10,6 +10,7 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
+// SendMessage sends a message
 func (i *Implementation) SendMessage(ctx context.Context, req *desc.SendMessageRequest) (*emptypb.Empty, error) {
 	op := "chatServer.SendMessage"
 	i.log.InfoContext(ctx, op, slog.Any("req", req))

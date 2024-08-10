@@ -17,12 +17,14 @@ type ChatInfo struct {
 	UserNames []string
 }
 
+// Message is the message model
 type Message struct {
 	ID        int64
 	Info      MessageInfo
 	CreatedAt time.Time
 }
 
+// MessageInfo is the message info model
 type MessageInfo struct {
 	FromUser string
 	Text     string

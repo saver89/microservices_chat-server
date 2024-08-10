@@ -13,6 +13,7 @@ func ToChatInfo(req *desc.CreateRequest) *model.ChatInfo {
 	}
 }
 
+// ToMessageInfo converts a message info from request to model
 func ToMessageInfo(req *desc.SendMessageRequest) *model.MessageInfo {
 	return &model.MessageInfo{
 		FromUser: req.From,

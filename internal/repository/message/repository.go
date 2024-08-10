@@ -24,6 +24,7 @@ type repo struct {
 	db db.Client
 }
 
+// NewMessageRepository creates a new message repository
 func NewMessageRepository(db db.Client) repository.MessageRepository {
 	return &repo{
 		db: db,

@@ -20,6 +20,7 @@ type ChatUserRepository interface {
 	Delete(ctx context.Context, chatID int64) error
 }
 
+// MessageRepository is the interface for message repository
 type MessageRepository interface {
 	SendMessage(ctx context.Context, req *model.MessageInfo) error
 }
