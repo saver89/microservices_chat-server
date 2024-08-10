@@ -20,7 +20,7 @@ type repo struct {
 	db db.Client
 }
 
-// NewChatRepository creates a new chat repository
+// NewChatUserRepository creates a new chat user repository
 func NewChatUserRepository(db db.Client) repository.ChatUserRepository {
 	return &repo{
 		db: db,

@@ -11,6 +11,7 @@ type ChatService interface {
 	Create(ctx context.Context, req *model.ChatInfo) (int64, error)
 	Get(ctx context.Context, id int64) (*model.Chat, error)
 	Delete(ctx context.Context, id int64) error
+	SendMessage(ctx context.Context, req *model.MessageInfo) error
 }
 
 // ChatLogService is the interface for chat log service

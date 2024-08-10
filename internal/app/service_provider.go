@@ -16,6 +16,7 @@ import (
 	chatRepository "github.com/saver89/microservices_chat-server/internal/repository/chat"
 	chatLogRepository "github.com/saver89/microservices_chat-server/internal/repository/chat_log"
 	chatUserRepository "github.com/saver89/microservices_chat-server/internal/repository/chat_user"
+	messageRepository "github.com/saver89/microservices_chat-server/internal/repository/message"
 	"github.com/saver89/microservices_chat-server/internal/service"
 	chatService "github.com/saver89/microservices_chat-server/internal/service/chat"
 )
@@ -31,6 +32,7 @@ type serviceProvider struct {
 	chatRepository     repository.ChatRepository
 	chatUserRepository repository.ChatUserRepository
 	chatLogRepository  repository.ChatLogRepository
+	messageRepository  repository.MessageRepository
 	chatImplementation *chat.Implementation
 
 	log *slog.Logger
@@ -99,6 +101,7 @@ func (s *serviceProvider) ChatService(ctx context.Context) service.ChatService {
 			s.ChatRepository(ctx),
 			s.ChatUserRepository(ctx),
 			s.ChatLogRepository(ctx),
+			s.MessageRepository(ctx),
 			s.TxManager(ctx),
 		)
 	}
@@ -128,6 +131,14 @@ func (s *serviceProvider) ChatLogRepository(ctx context.Context) repository.Chat
 	}
 
 	return s.chatLogRepository
+}
+
+func (s *serviceProvider) MessageRepository(ctx context.Context) repository.MessageRepository {
+	if s.messageRepository == nil {
+		s.messageRepository = messageRepository.NewMessageRepository(s.DBClient(ctx))
+	}
+
+	return s.messageRepository
 }
 
 func (s *serviceProvider) ChatImplementation(ctx context.Context) *chat.Implementation {

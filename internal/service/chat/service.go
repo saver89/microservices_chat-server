@@ -7,16 +7,18 @@ import (
 )
 
 const (
-	createLog = "create"
-	updateLog = "update"
-	deleteLog = "delete"
-	getLog    = "delete"
+	createLog      = "create"
+	updateLog      = "update"
+	deleteLog      = "delete"
+	getLog         = "delete"
+	sendMessageLog = "send_message"
 )
 
 type serv struct {
 	chatRepository     repository.ChatRepository
 	chatUserRepository repository.ChatUserRepository
 	chatLogRepository  repository.ChatLogRepository
+	messageRepository  repository.MessageRepository
 	txManager          db.TxManager
 }
 
@@ -25,12 +27,14 @@ func NewChatService(
 	chatRepository repository.ChatRepository,
 	chatUserRepository repository.ChatUserRepository,
 	chatLogRepository repository.ChatLogRepository,
+	messageRepository repository.MessageRepository,
 	txManager db.TxManager,
 ) service.ChatService {
 	return &serv{
 		chatRepository:     chatRepository,
 		chatUserRepository: chatUserRepository,
 		chatLogRepository:  chatLogRepository,
+		messageRepository:  messageRepository,
 		txManager:          txManager,
 	}
 }

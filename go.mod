@@ -9,7 +9,7 @@ require (
 	github.com/jackc/pgx/v4 v4.18.3
 	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.9.1
-	github.com/saver89/microservices_proto v0.0.0-20240810104534-31dab375f394
+	github.com/saver89/microservices_proto v0.0.0-20240810111913-c32ba392966c
 	google.golang.org/grpc v1.65.0
 	google.golang.org/protobuf v1.34.2
 )
